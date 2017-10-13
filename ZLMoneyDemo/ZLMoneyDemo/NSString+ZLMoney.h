@@ -10,6 +10,10 @@
 
 @interface NSString (ZLMoney)
 
+// 自定义正数格式(金额的格式转化) 94,862.57
++ (NSString *)stringChangeMoneyWithDouble:(double)number;
+
+
 // 金额的格式转化 ￥94,862.57这样的形式
 + (NSString *)stringChangeMoneyWithStr:(NSString *)str;
 

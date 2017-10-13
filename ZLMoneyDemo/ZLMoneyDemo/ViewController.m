@@ -24,7 +24,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     // 测试数据:
-    self.cost = @"94862.57";
+    self.cost = @"1194862.57";
     
     // 成本值
     UILabel *costValue = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 50)];
@@ -32,8 +32,9 @@
     costValue.textColor = [UIColor redColor];
     costValue.textAlignment = NSTextAlignmentCenter;
     // 调用
-    costValue.text = [NSString stringChangeMoneyWithStr:self.cost];
+//    costValue.text = [NSString stringChangeMoneyWithStr:self.cost];
 //    costValue.text = [NSString stringChangeMoneyWithStr:self.cost numberStyle:NSNumberFormatterCurrencyStyle];
+    costValue.text = [NSString stringChangeMoneyWithDouble:[self.cost doubleValue]];
     [self.view addSubview:costValue];
     
     // 打印查看 各个枚举对应输出金额数字格式的效果如下:

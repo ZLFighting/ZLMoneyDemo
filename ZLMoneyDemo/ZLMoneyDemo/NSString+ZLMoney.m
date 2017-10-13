@@ -10,6 +10,19 @@
 
 @implementation NSString (ZLMoney)
 
+// 自定义正数格式(金额的格式转化) 94,862.57 前缀可在所需地方随意添加
++ (NSString *)stringChangeMoneyWithDouble:(double)number {
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.positiveFormat = @",###.##"; // 正数格式
+    // 注意传入参数的数据长度，可用double
+    NSString *money = [formatter stringFromNumber:@(number)];
+    
+    return money;
+}
+
+//-------------------------------------------------
+
 // 金额的格式转化 默认格式
 + (NSString *)stringChangeMoneyWithStr:(NSString *)str {
     
@@ -19,9 +32,12 @@
     }
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-    formatter.numberStyle = kCFNumberFormatterCurrencyStyle; // ￥94,862.57这样的形式
+    formatter.numberStyle = kCFNumberFormatterDecimalStyle; // 94,862.57这样的形式
+    
     // 注意传入参数的数据长度，可用double
     NSString *money = [formatter stringFromNumber:[NSNumber numberWithDouble:[str doubleValue]]];
+    // iOS11之后kCFNumberFormatterCurrencyStyle 前缀变成了CN￥不是￥.这里选择使用kCFNumberFormatterDecimalStyle然后拼接￥符号
+    money = [NSString stringWithFormat:@"￥%@", money];
     
     return money;
 }
